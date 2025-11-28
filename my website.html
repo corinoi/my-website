@@ -1,0 +1,2634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title><span id="dynamicLogo">Poinin</span> — Premium Video Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --bg: #0f0f1a;
+  --card: #131324;
+  --muted: #8b8fa3;
+  --text: #f0f2fc;
+  --accent: #7c5cff;
+  --accent-glow: rgba(124, 92, 255, 0.4);
+  --secondary: #00c6ff;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-2: rgba(255, 255, 255, 0.03);
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow: 0 20px 40px rgba(2, 6, 23, 0.7);
+  --soft: 0 10px 30px rgba(2, 6, 23, 0.5);
+  --transition: 300ms cubic-bezier(0.2, 0.9, 0.3, 1);
+  --ui-scale: 1;
+  --blur-amount: 12px;
+  --density: 1;
+  --gradient: linear-gradient(135deg, var(--accent), var(--secondary));
+}
+
+[data-theme="light"] {
+  --bg: #f6f8ff;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #0a0f1f;
+  --glass: rgba(10, 14, 20, 0.05);
+  --glass-2: rgba(10, 14, 20, 0.03);
+  --shadow: 0 20px 40px rgba(9, 15, 30, 0.08);
+  --soft: 0 10px 30px rgba(9, 15, 30, 0.06);
+  --accent-glow: rgba(124, 92, 255, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: var(--text);
+  background: 
+    radial-gradient(1200px 600px at 10% 10%, rgba(124, 92, 255, 0.1), transparent),
+    radial-gradient(900px 500px at 90% 90%, rgba(0, 200, 255, 0.05), transparent),
+    var(--bg);
+  padding: 28px;
+  -webkit-font-smoothing: antialiased;
+  transform: scale(var(--ui-scale));
+  transform-origin: top left;
+  transition: background var(--transition), color var(--transition);
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(124, 92, 255, 0.07) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 198, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -2;
+}
+
+.site {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Enhanced Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: var(--gradient);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: white;
+  font-size: 22px;
+  box-shadow: var(--soft), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  pointer-events: none;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: var(--card);
+  border: 1px solid var(--glass);
+  padding: 12px;
+  border-radius: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  box-shadow: var(--soft);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.icon-btn:hover {
+  transform: translateY(-4px);
+  color: var(--accent);
+  border-color: rgba(124, 92, 255, 0.2);
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.6);
+}
+
+.icon-btn:hover::before {
+  opacity: 1;
+}
+
+.icon-btn.active {
+  background: rgba(124, 92, 255, 0.1);
+  color: var(--accent);
+  border-color: rgba(124, 92, 255, 0.3);
+}
+
+/* Enhanced Main Layout */
+main {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+}
+
+@media (max-width: 1080px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: linear-gradient(145deg, var(--card), rgba(255, 255, 255, 0.02));
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid var(--glass-2);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.03), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--glass);
+  box-shadow: var(--soft);
+  transition: all var(--transition);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.05), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 30px 70px rgba(2, 6, 23, 0.7);
+  border-color: rgba(124, 92, 255, 0.2);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.thumb {
+  position: relative;
+  padding-top: 56%;
+  background: #0b1220;
+  overflow: hidden;
+}
+
+.thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.card:hover .thumb img {
+  transform: scale(1.08);
+}
+
+.thumb::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(11, 18, 32, 0.9), transparent);
+  pointer-events: none;
+}
+
+.card .meta {
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.meta .info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.meta .info p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.btn.active {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+/* Enhanced Profile Card */
+.profile-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--glass);
+  box-shadow: var(--soft);
+  position: relative;
+}
+
+.avatar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.2), transparent);
+  pointer-events: none;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-meta {
+  flex: 1;
+}
+
+.profile-meta h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.profile-meta p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-weight: 700;
+  font-size: 16px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Enhanced Command Palette */
+.cmd {
+  position: fixed;
+  left: 50%;
+  top: 15%;
+  transform: translateX(-50%);
+  width: min(760px, 92%);
+  max-height: 70vh;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 50px 100px rgba(2, 6, 23, 0.7);
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--glass-2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+  z-index: 9999;
+  backdrop-filter: blur(20px);
+}
+
+.cmd.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cmd .input {
+  display: flex;
+  gap: 8px;
+  padding: 20px;
+  border-bottom: 1px solid var(--glass);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cmd input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--glass);
+  background: transparent;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.cmd .list {
+  margin: 0;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.cmd .item {
+  padding: 14px 20px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  transition: all var(--transition);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.cmd .item:last-child {
+  border-bottom: none;
+}
+
+.cmd .item:hover {
+  background: linear-gradient(90deg, rgba(124, 92, 255, 0.1), transparent);
+  color: var(--text);
+  padding-left: 24px;
+}
+
+.cmd .item .icon {
+  width: 20px;
+  text-align: center;
+}
+
+/* Enhanced Settings Panel */
+.settings-panel {
+  position: fixed;
+  right: 28px;
+  top: 28px;
+  width: 400px;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  background: linear-gradient(145deg, var(--card), rgba(255, 255, 255, 0.01));
+  box-shadow: var(--shadow);
+  border: 1px solid var(--glass-2);
+  transform: translateY(10px) scale(0.98);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition);
+  z-index: 900;
+  backdrop-filter: blur(20px);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.settings-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.settings-panel h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-panel h3 i {
+  color: var(--accent);
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input[type='text'], input[type='url'], textarea, select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--glass);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  transition: all var(--transition);
+}
+
+input[type='text']:focus, input[type='url']:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: rgba(124, 92, 255, 0.4);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+input[type='color'] {
+  width: 50px;
+  height: 40px;
+  border: none;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.range {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.range input {
+  flex: 1;
+}
+
+.small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Enhanced Ambient Background */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.ambient .layer {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(var(--blur-amount));
+  opacity: 0.3;
+  animation: float 20s infinite ease-in-out;
+}
+
+.layer.a {
+  width: 800px;
+  height: 500px;
+  left: -10%;
+  top: -8%;
+  background: linear-gradient(135deg, var(--accent), #2dd4bf);
+  animation-delay: 0s;
+}
+
+.layer.b {
+  width: 600px;
+  height: 400px;
+  right: -6%;
+  bottom: -12%;
+  background: linear-gradient(135deg, #ff7ab6, var(--accent));
+  animation-delay: -5s;
+}
+
+.layer.c {
+  width: 400px;
+  height: 300px;
+  left: 20%;
+  bottom: -10%;
+  background: linear-gradient(135deg, #00c6ff, #2dd4bf);
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(20px, -20px) scale(1.05); }
+  50% { transform: translate(-15px, 10px) scale(0.95); }
+  75% { transform: translate(10px, 15px) scale(1.02); }
+}
+
+/* Enhanced Badges */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--gradient);
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  box-shadow: 0 4px 12px var(--accent-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  pointer-events: none;
+}
+
+/* Enhanced Player Modal */
+.player-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.player-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.player-content {
+  width: clamp(320px, 90vw, 1200px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.player-modal.open .player-content {
+  transform: scale(1);
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--glass-2);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.player-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.player-close {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all var(--transition);
+}
+
+.player-close:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+.player-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+}
+
+/* Enhanced Watch List */
+.watch-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--glass);
+  transition: all var(--transition);
+}
+
+.watch-item:hover {
+  padding-left: 8px;
+}
+
+.watch-item:last-child {
+  border-bottom: none;
+}
+
+.watch-thumb {
+  width: 90px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.watch-info {
+  flex: 1;
+}
+
+.watch-info .title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.watch-info .desc {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.watch-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  body {
+    padding: 16px;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .toolbar {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  
+  .settings-panel {
+    width: calc(100vw - 32px);
+    right: 16px;
+    left: 16px;
+    top: 16px;
+  }
+  
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-stats {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .logo {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+/* Loading animation */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+.loading {
+  animation: shimmer 1.5s infinite linear;
+  background: linear-gradient(to right, var(--glass) 4%, rgba(255,255,255,0.1) 25%, var(--glass) 36%);
+  background-size: 200px 100%;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 92, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 92, 255, 0.5);
+}
+
+/* Focus styles for accessibility */
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Animation for new items */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Enhanced sign-in modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(25px);
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+
+.modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background: var(--card);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(30px);
+  width: 380px;
+  text-align: center;
+  animation: popIn 0.4s ease;
+  border: 1px solid var(--glass-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient);
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.85) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.signin-option {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  background: var(--gradient);
+  color: #fff;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.signin-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.signin-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px var(--accent-glow);
+}
+
+.signin-option:hover::before {
+  opacity: 1;
+}
+
+.signin-float {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  opacity: 0.3;
+  border-radius: 50%;
+  filter: blur(4px);
+  animation: floatUp 8s infinite ease-in;
+  bottom: -20px;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.4);
+    opacity: 0;
+  }
+}
+
+#dynamicLogo {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.4s ease;
+}
+
+/* Stats counter animation */
+.counter {
+  display: inline-block;
+}
+
+.counter-value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Enhanced Auth Forms */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.auth-form h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.auth-form .field {
+  margin-bottom: 0;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--glass);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  transition: all var(--transition);
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: rgba(124, 92, 255, 0.4);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.auth-form .btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.auth-switch a {
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* Username validation styles */
+.username-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.username-check.available {
+  color: #2dd4bf;
+}
+
+.username-check.taken {
+  color: #f87171;
+}
+
+/* User menu */
+.user-menu {
+  position: relative;
+}
+
+.user-menu-content {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--glass-2);
+  padding: 8px 0;
+  min-width: 180px;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all var(--transition);
+}
+
+.user-menu.open .user-menu-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.user-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--text);
+  text-decoration: none;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.user-menu-item:hover {
+  background: rgba(124, 92, 255, 0.1);
+  color: var(--accent);
+}
+
+.user-menu-divider {
+  height: 1px;
+  background: var(--glass);
+  margin: 8px 0;
+}
+
+.anonymous-banner {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.anonymous-banner .text {
+  flex: 1;
+}
+
+.anonymous-banner .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.anonymous-banner .btn {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true">
+  <div class="layer a"></div>
+  <div class="layer b"></div>
+  <div class="layer c"></div>
+</div>
+
+<div class="site">
+  <header class="header">
+    <div class="brand">
+      <div class="logo">P</div>
+      <div class="title">
+        <h1 id="dynamicLogo">Poinin</h1>
+        <p class="small">Premium Video Experience • Motion & Edits</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <button class="icon-btn" id="openCmd" title="Command palette (Ctrl/Cmd+K)">
+        <i class="fas fa-terminal"></i>
+      </button>
+      <button class="icon-btn" id="openSettingsBtn" title="Customize">
+        <i class="fas fa-sliders-h"></i>
+      </button>
+      <div class="user-menu" id="userMenu">
+        <button class="icon-btn" id="openProfileBtn" title="Profile">
+          <i class="fas fa-user"></i>
+        </button>
+        <div class="user-menu-content">
+          <div class="user-menu-item" id="profileMenuItem">
+            <i class="fas fa-user-circle"></i>
+            <span id="menuUsername">Profile</span>
+          </div>
+          <div class="user-menu-item" id="settingsMenuItem">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </div>
+          <div class="user-menu-divider"></div>
+          <div class="user-menu-item" id="signOutMenuItem">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Sign Out</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <div>
+          <h2 style="margin:0;font-size:24px;font-weight:700">Featured Edits</h2>
+          <div class="small">Click to play. Save items to your watch list.</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="badge" id="dynamicBadge">Premium</div>
+          <button class="btn" id="refreshGallery" title="Refresh">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+      </div>
+      <div class="gallery" id="gallery" aria-live="polite"></div>
+    </section>
+
+    <aside class="panel" aria-labelledby="watch-heading">
+      <div id="anonymousBanner" class="anonymous-banner" style="display: none;">
+        <div class="text">
+          <strong>Browsing Anonymously</strong>
+          <div class="small">Sign in to save your preferences and access all features</div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="signInBtn">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </button>
+          <button class="btn" id="signUpBtn">
+            <i class="fas fa-user-plus"></i> Sign Up
+          </button>
+        </div>
+      </div>
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <div>
+          <h3 id="watch-heading" style="margin:0;font-size:20px;font-weight:600">Watch Later</h3>
+          <div class="small">Saved items for quick access</div>
+        </div>
+        <button class="btn" id="clearWatch">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      <div id="watchList"></div>
+      
+      <hr style="border:none;border-top:1px solid var(--glass);margin:20px 0">
+      
+      <div class="profile-card">
+        <div class="avatar" id="profileAvatarWrap">
+          <img id="profileAvatar" src="https://i.imgur.com/8Km9tLL.png" alt="avatar">
+        </div>
+        <div class="profile-meta">
+          <h4 id="profileName">Poinin</h4>
+          <p id="profileBio">Cyber Artist • Motion & FX</p>
+          <div class="profile-stats">
+            <div class="stat">
+              <div class="stat-value counter" id="savedCount">0</div>
+              <div class="stat-label">Saved</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value counter" id="viewedCount">0</div>
+              <div class="stat-label">Viewed</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" id="themeLabel">Dark</div>
+              <div class="stat-label">Theme</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+</div>
+
+<!-- Enhanced Command Palette -->
+<div class="cmd" id="cmd" role="dialog" aria-hidden="true" aria-labelledby="cmd-title">
+  <div class="input">
+    <input id="cmdInput" placeholder="Type a command (eg: theme, accent, open settings) — Ctrl/Cmd+K to open" autofocus>
+  </div>
+  <div class="list" id="cmdList"></div>
+</div>
+
+<!-- Enhanced Settings Panel -->
+<div class="settings-panel" id="settingsPanel" aria-hidden="true">
+  <h3><i class="fas fa-palette"></i> Customize Appearance</h3>
+  
+  <div class="field">
+    <label for="accentPicker">Accent Color</label>
+    <input type="color" id="accentPicker" value="#7c5cff">
+  </div>
+  
+  <div class="field">
+    <label for="themeSelect">Theme</label>
+    <select id="themeSelect">
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+      <option value="auto">Auto (System)</option>
+    </select>
+  </div>
+  
+  <div class="field">
+    <label for="fontSelect">Font Style</label>
+    <select id="fontSelect">
+      <option value="inter">Inter (Sans)</option>
+      <option value="serif">Plex Serif</option>
+      <option value="mono">Mono</option>
+    </select>
+  </div>
+  
+  <div class="field">
+    <label for="scaleRange">UI Scale <span id="scaleValue" class="small">100%</span></label>
+    <div class="range">
+      <input type="range" id="scaleRange" min="0.8" max="1.2" step="0.02" value="1">
+    </div>
+  </div>
+  
+  <div class="field">
+    <label for="blurRange">Blur Intensity <span id="blurValue" class="small">12px</span></label>
+    <input type="range" id="blurRange" min="2" max="24" step="1" value="12">
+  </div>
+  
+  <div class="field">
+    <label for="densityRange">Density <span id="densityValue" class="small">Normal</span></label>
+    <input type="range" id="densityRange" min="0.82" max="1.06" step="0.02" value="1">
+  </div>
+  
+  <div style="display:flex;gap:8px;margin-top:20px">
+    <button class="btn" id="exportProfile">
+      <i class="fas fa-download"></i> Export
+    </button>
+    <button class="btn" id="importProfile">
+      <i class="fas fa-upload"></i> Import
+    </button>
+    <button class="btn" id="resetProfile">
+      <i class="fas fa-undo"></i> Reset
+    </button>
+  </div>
+  
+  <hr style="border:none;border-top:1px solid var(--glass);margin:20px 0">
+  
+  <h3><i class="fas fa-user-cog"></i> Profile Settings</h3>
+  
+  <div class="field">
+    <label for="avatarUrl">Avatar URL</label>
+    <input type="url" id="avatarUrl" placeholder="https://...">
+  </div>
+  
+  <div class="field">
+    <label for="bioInput">Bio</label>
+    <input type="text" id="bioInput" placeholder="Short bio...">
+  </div>
+  
+  <div class="field">
+    <label for="usernameInput">Username</label>
+    <input type="text" id="usernameInput" placeholder="Your username...">
+  </div>
+</div>
+
+<!-- Enhanced Player Modal -->
+<div class="player-modal" id="playerModal">
+  <div class="player-content">
+    <div class="player-header">
+      <h3 id="playerTitle">Video Title</h3>
+      <button class="player-close" id="playerClose">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <video class="player-video" id="playerVideo" controls></video>
+  </div>
+</div>
+
+<!-- Auth Modal -->
+<div id="authModal" class="modal hidden">
+  <div class="modal-content">
+    <div id="signinForm" class="auth-form">
+      <h3>Welcome to Poinin</h3>
+      <p class="small" style="text-align:center;margin-bottom:20px">Sign in to your account</p>
+      
+      <div class="field">
+        <label for="signinUsername">Username</label>
+        <input type="text" id="signinUsername" placeholder="Enter your username" autocomplete="username">
+      </div>
+      
+      <div class="field">
+        <label for="signinPassword">Password</label>
+        <input type="password" id="signinPassword" placeholder="Enter your password" autocomplete="current-password">
+      </div>
+      
+      <button class="signin-option" id="signinSubmit">
+        <i class="fas fa-sign-in-alt" style="margin-right:8px"></i> Sign In
+      </button>
+      
+      <div class="auth-switch">
+        Don't have an account? <a id="switchToSignup">Sign up</a>
+      </div>
+    </div>
+    
+    <div id="signupForm" class="auth-form" style="display:none">
+      <h3>Create Account</h3>
+      <p class="small" style="text-align:center;margin-bottom:20px">Join Poinin today</p>
+      
+      <div class="field">
+        <label for="signupUsername">Username</label>
+        <input type="text" id="signupUsername" placeholder="Choose a username" autocomplete="username">
+        <div id="usernameCheck" class="username-check" style="display:none">
+          <i class="fas fa-check"></i>
+          <span>Username available</span>
+        </div>
+      </div>
+      
+      <div class="field">
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" placeholder="Your email address" autocomplete="email">
+      </div>
+      
+      <div class="field">
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" placeholder="Create a password" autocomplete="new-password">
+      </div>
+      
+      <div class="field">
+        <label for="signupConfirmPassword">Confirm Password</label>
+        <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" autocomplete="new-password">
+      </div>
+      
+      <button class="signin-option" id="signupSubmit">
+        <i class="fas fa-user-plus" style="margin-right:8px"></i> Create Account
+      </button>
+      
+      <div class="auth-switch">
+        Already have an account? <a id="switchToSignin">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ======= Enhanced Utilities =======
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+
+// Enhanced localStorage with error handling and defaults
+function safeGet(key, fallback) { 
+  try { 
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : fallback;
+  } catch(e) { 
+    console.warn(`Error reading ${key} from localStorage:`, e);
+    return fallback;
+  } 
+}
+
+function safeSet(key, val) { 
+  try { 
+    localStorage.setItem(key, JSON.stringify(val));
+  } catch(e) {
+    console.warn(`Error saving ${key} to localStorage:`, e);
+  }
+}
+
+// Animation helper
+function animateValue(element, start, end, duration) {
+  const range = end - start;
+  const startTime = performance.now();
+  
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function
+    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+    const value = start + (range * easeOutQuart);
+    
+    element.textContent = Math.round(value);
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+  
+  requestAnimationFrame(update);
+}
+
+// ======= Enhanced Sample Data =======
+const videos = [
+  {
+    id: 1,
+    title: 'Comp 1',
+    desc: 'Your custom video edit',
+    thumb: 'Comp 1_1_001.gif',
+    src: 'Comp 1.mp4',
+    duration: '0:08',
+    views: 1247,
+    likes: 89
+  },
+ 
+];
+
+// ======= Enhanced State Management =======
+let state = safeGet('poinin_state', {
+  theme: 'dark',
+  accent: '#7c5cff',
+  font: 'inter',
+  scale: 1,
+  blur: 12,
+  density: 1,
+  avatar: 'https://i.imgur.com/8Km9tLL.png',
+  bio: 'Cyber Artist • Motion & FX',
+  username: 'Poinin',
+  badges: [],
+  activity: 0,
+  viewedVideos: [],
+  likes: []
+});
+
+let watch = safeGet('poinin_watch', []);
+
+// User accounts system
+let users = safeGet('poinin_users', {});
+let currentUser = safeGet('poinin_current_user', null);
+
+// ======= Enhanced Authentication System =======
+function showAuthModal() {
+  $('#authModal').classList.remove('hidden');
+  $('#signinForm').style.display = 'block';
+  $('#signupForm').style.display = 'none';
+  $('#signinUsername').focus();
+}
+
+function hideAuthModal() {
+  $('#authModal').classList.add('hidden');
+}
+
+function switchToSignup() {
+  $('#signinForm').style.display = 'none';
+  $('#signupForm').style.display = 'block';
+  $('#signupUsername').focus();
+}
+
+function switchToSignin() {
+  $('#signupForm').style.display = 'none';
+  $('#signinForm').style.display = 'block';
+  $('#signinUsername').focus();
+}
+
+function checkUsernameAvailability(username) {
+  return !users[username];
+}
+
+function validateSignupForm() {
+  const username = $('#signupUsername').value.trim();
+  const email = $('#signupEmail').value.trim();
+  const password = $('#signupPassword').value;
+  const confirmPassword = $('#signupConfirmPassword').value;
+  
+  if (!username) {
+    showNotification('Please enter a username', 'error');
+    return false;
+  }
+  
+  if (username.length < 3) {
+    showNotification('Username must be at least 3 characters', 'error');
+    return false;
+  }
+  
+  if (!checkUsernameAvailability(username)) {
+    showNotification('Username is already taken', 'error');
+    return false;
+  }
+  
+  if (!email) {
+    showNotification('Please enter an email address', 'error');
+    return false;
+  }
+  
+  if (!isValidEmail(email)) {
+    showNotification('Please enter a valid email address', 'error');
+    return false;
+  }
+  
+  if (!password) {
+    showNotification('Please enter a password', 'error');
+    return false;
+  }
+  
+  if (password.length < 6) {
+    showNotification('Password must be at least 6 characters', 'error');
+    return false;
+  }
+  
+  if (password !== confirmPassword) {
+    showNotification('Passwords do not match', 'error');
+    return false;
+  }
+  
+  return true;
+}
+
+function isValidEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+function signUp() {
+  if (!validateSignupForm()) return;
+  
+  const username = $('#signupUsername').value.trim();
+  const email = $('#signupEmail').value.trim();
+  const password = $('#signupPassword').value;
+  
+  // Create new user
+  users[username] = {
+    email: email,
+    password: password, // In a real app, this would be hashed
+    joined: new Date().toISOString(),
+    profile: {
+      avatar: 'https://i.imgur.com/8Km9tLL.png',
+      bio: 'New Poinin User',
+      theme: 'dark',
+      accent: '#7c5cff'
+    },
+    stats: {
+      saved: 0,
+      viewed: 0,
+      likes: 0
+    }
+  };
+  
+  safeSet('poinin_users', users);
+  
+  // Auto sign in
+  signIn(username, password);
+}
+
+function signIn(username, password) {
+  const user = users[username];
+  
+  if (!user) {
+    showNotification('User not found', 'error');
+    return false;
+  }
+  
+  if (user.password !== password) {
+    showNotification('Incorrect password', 'error');
+    return false;
+  }
+  
+  // Set current user
+  currentUser = username;
+  safeSet('poinin_current_user', currentUser);
+  
+  // Load user preferences
+  state = {
+    ...state,
+    username: username,
+    avatar: user.profile.avatar,
+    bio: user.profile.bio,
+    theme: user.profile.theme,
+    accent: user.profile.accent
+  };
+  
+  saveState();
+  updateCSS();
+  updateLogo();
+  hideAuthModal();
+  showNotification(`Welcome back, ${username}!`, 'success');
+  
+  return true;
+}
+
+function signOut() {
+  currentUser = null;
+  safeSet('poinin_current_user', null);
+  
+  // Reset to default state
+  state = {
+    theme: 'dark',
+    accent: '#7c5cff',
+    font: 'inter',
+    scale: 1,
+    blur: 12,
+    density: 1,
+    avatar: 'https://i.imgur.com/8Km9tLL.png',
+    bio: 'Cyber Artist • Motion & FX',
+    username: 'Poinin',
+    badges: [],
+    activity: 0,
+    viewedVideos: [],
+    likes: []
+  };
+  
+  saveState();
+  updateCSS();
+  updateLogo();
+  showNotification('Signed out successfully', 'info');
+}
+
+// ======= Anonymous Browsing =======
+function toggleAnonymousBanner() {
+  const banner = $('#anonymousBanner');
+  if (currentUser) {
+    banner.style.display = 'none';
+  } else {
+    banner.style.display = 'flex';
+  }
+}
+
+// ======= Enhanced UI Initialization =======
+function updateCSS() {
+  document.documentElement.style.setProperty('--accent', state.accent);
+  document.documentElement.style.setProperty('--accent-glow', state.accent + '40');
+  document.documentElement.style.setProperty('--ui-scale', state.scale);
+  document.documentElement.style.setProperty('--blur-amount', state.blur + 'px');
+  document.documentElement.style.setProperty('--density', state.density);
+  
+  // Update gradient
+  document.documentElement.style.setProperty('--gradient', `linear-gradient(135deg, ${state.accent}, var(--secondary))`);
+  
+  // Font family
+  if (state.font === 'inter') {
+    document.body.style.fontFamily = 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial';
+  } else if (state.font === 'serif') {
+    document.body.style.fontFamily = 'IBM Plex Serif, serif';
+  } else {
+    document.body.style.fontFamily = 'ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Helvetica Neue", monospace';
+  }
+  
+  // Theme
+  if (state.theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  
+  // Update form values
+  $('#accentPicker').value = state.accent;
+  $('#themeSelect').value = state.theme;
+  $('#fontSelect').value = state.font;
+  $('#scaleRange').value = state.scale;
+  $('#blurRange').value = state.blur;
+  $('#densityRange').value = state.density;
+  $('#avatarUrl').value = state.avatar;
+  $('#bioInput').value = state.bio;
+  $('#usernameInput').value = state.username;
+  
+  // Update display values
+  $('#scaleValue').textContent = Math.round(state.scale * 100) + '%';
+  $('#blurValue').textContent = state.blur + 'px';
+  $('#densityValue').textContent = 
+    state.density < 0.9 ? 'Compact' : 
+    state.density > 1.02 ? 'Spacious' : 'Normal';
+  
+  $('#themeLabel').textContent = 
+    state.theme === 'dark' ? 'Dark' : 
+    state.theme === 'light' ? 'Light' : 'Auto';
+  
+  // Update profile
+  $('#profileAvatar').src = state.avatar;
+  $('#profileName').textContent = state.username;
+  $('#profileBio').textContent = state.bio;
+  
+  // Update menu username
+  $('#menuUsername').textContent = state.username;
+  
+  // Update stats
+  updateStats();
+  
+  // Update anonymous banner
+  toggleAnonymousBanner();
+}
+
+function saveState() {
+  safeSet('poinin_state', state);
+  
+  // Also save to user profile if signed in
+  if (currentUser && users[currentUser]) {
+    users[currentUser].profile = {
+      avatar: state.avatar,
+      bio: state.bio,
+      theme: state.theme,
+      accent: state.accent
+    };
+    safeSet('poinin_users', users);
+  }
+}
+
+// ======= Enhanced Gallery =======
+function renderGallery() {
+  const g = $('#gallery');
+  g.innerHTML = '';
+  
+  videos.forEach((v, index) => {
+    const el = document.createElement('div');
+    el.className = 'card fade-in-up';
+    el.dataset.id = v.id;
+    el.style.animationDelay = `${index * 0.05}s`;
+    
+    const isViewed = state.viewedVideos.includes(v.id);
+    const isLiked = state.likes.includes(v.id);
+    const isSaved = watch.some(x => x.id === v.id);
+    
+    el.innerHTML = `
+      <div class="thumb" data-id="${v.id}">
+        <img src="${v.thumb}" alt="${v.title}" loading="lazy">
+        <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);color:white;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:600">
+          ${v.duration}
+        </div>
+        ${isViewed ? '<div style="position:absolute;top:8px;right:8px;color:#2dd4bf;font-size:14px"><i class="fas fa-eye"></i></div>' : ''}
+      </div>
+      <div class="meta">
+        <div class="info">
+          <h3>${v.title}</h3>
+          <p>${v.desc}</p>
+          <div style="display:flex;gap:12px;margin-top:8px;font-size:12px;color:var(--muted)">
+            <span><i class="fas fa-play"></i> ${v.views.toLocaleString()}</span>
+            <span><i class="fas fa-heart"></i> ${v.likes}</span>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn like ${isLiked ? 'active' : ''}" data-id="${v.id}" title="${isLiked ? 'Unlike' : 'Like'}">
+            <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
+          </button>
+          <button class="btn save ${isSaved ? 'active' : ''}" data-id="${v.id}" title="${isSaved ? 'Remove from watchlist' : 'Add to watchlist'}">
+            <i class="${isSaved ? 'fas' : 'far'} fa-clock"></i>
+          </button>
+          <button class="btn play" data-id="${v.id}" title="Play">
+            <i class="fas fa-play"></i>
+          </button>
+        </div>
+      </div>
+    `;
+    
+    g.appendChild(el);
+  });
+}
+
+// ======= Enhanced Watch List =======
+function renderWatch() {
+  const w = $('#watchList');
+  w.innerHTML = '';
+  
+  if (watch.length === 0) {
+    w.innerHTML = '<div class="small muted" style="text-align:center;padding:20px">No items saved yet.<br>Save videos to watch later.</div>';
+    return;
+  }
+  
+  watch.forEach((v, index) => {
+    const el = document.createElement('div');
+    el.className = 'watch-item fade-in-up';
+    el.style.animationDelay = `${index * 0.05}s`;
+    
+    el.innerHTML = `
+      <img class="watch-thumb" src="${v.thumb}" alt="${v.title}">
+      <div class="watch-info">
+        <div class="title">${v.title}</div>
+        <div class="desc">${v.desc} • ${v.duration}</div>
+      </div>
+      <div class="watch-actions">
+        <button class="btn play-watch" data-id="${v.id}" title="Play">
+          <i class="fas fa-play"></i>
+        </button>
+        <button class="btn remove-watch" data-id="${v.id}" title="Remove">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    `;
+    
+    w.appendChild(el);
+  });
+}
+
+function toggleWatch(id) {
+  const exists = watch.find(x => x.id === id);
+  if (exists) {
+    watch = watch.filter(x => x.id !== id);
+  } else {
+    const v = videos.find(x => x.id === id);
+    if (v) watch.push(v);
+  }
+  
+  safeSet('poinin_watch', watch);
+  renderWatch();
+  refreshSaveButtons();
+  updateBadges();
+  updateStats();
+}
+
+function refreshSaveButtons() {
+  $$('.save').forEach(btn => {
+    const id = Number(btn.dataset.id);
+    const isSaved = watch.some(x => x.id === id);
+    btn.classList.toggle('active', isSaved);
+    btn.innerHTML = isSaved ? '<i class="fas fa-clock"></i>' : '<i class="far fa-clock"></i>';
+    btn.title = isSaved ? 'Remove from watchlist' : 'Add to watchlist';
+  });
+}
+
+function toggleLike(id) {
+  const isLiked = state.likes.includes(id);
+  if (isLiked) {
+    state.likes = state.likes.filter(x => x !== id);
+  } else {
+    state.likes.push(id);
+  }
+  
+  saveState();
+  refreshLikeButtons();
+  updateStats();
+}
+
+function refreshLikeButtons() {
+  $$('.like').forEach(btn => {
+    const id = Number(btn.dataset.id);
+    const isLiked = state.likes.includes(id);
+    btn.classList.toggle('active', isLiked);
+    btn.innerHTML = isLiked ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+    btn.title = isLiked ? 'Unlike' : 'Like';
+  });
+}
+
+// ======= Enhanced Player =======
+function openPlayer(v) {
+  const modal = $('#playerModal');
+  const video = $('#playerVideo');
+  const title = $('#playerTitle');
+  
+  title.textContent = v.title;
+  video.src = v.src;
+  
+  modal.classList.add('open');
+  
+  // Mark as viewed if not already
+  if (!state.viewedVideos.includes(v.id)) {
+    state.viewedVideos.push(v.id);
+    saveState();
+    updateStats();
+    
+    // Update UI to show viewed status
+    const card = $(`.card[data-id="${v.id}"]`);
+    if (card) {
+      const thumb = card.querySelector('.thumb');
+      if (!thumb.querySelector('.fa-eye')) {
+        const eyeIcon = document.createElement('div');
+        eyeIcon.style.cssText = 'position:absolute;top:8px;right:8px;color:#2dd4bf;font-size:14px';
+        eyeIcon.innerHTML = '<i class="fas fa-eye"></i>';
+        thumb.appendChild(eyeIcon);
+      }
+    }
+  }
+  
+  // Play video when modal opens
+  setTimeout(() => {
+    video.play().catch(e => console.log('Autoplay prevented:', e));
+  }, 300);
+}
+
+function closePlayer() {
+  const modal = $('#playerModal');
+  const video = $('#playerVideo');
+  
+  video.pause();
+  video.src = '';
+  modal.classList.remove('open');
+}
+
+// ======= Enhanced Command Palette =======
+const cmd = $('#cmd');
+const cmdInput = $('#cmdInput');
+const cmdList = $('#cmdList');
+
+const commands = [
+  {k: 'theme dark', f: () => { state.theme = 'dark'; updateCSS(); saveState(); }},
+  {k: 'theme light', f: () => { state.theme = 'light'; updateCSS(); saveState(); }},
+  {k: 'theme auto', f: () => { state.theme = 'auto'; updateCSS(); saveState(); }},
+  {k: 'open settings', f: () => toggleSettings(true)},
+  {k: 'open watch', f: () => { $('#watchList').scrollIntoView({behavior: 'smooth'}); }},
+  {k: 'toggle badges', f: () => toggleBadges()},
+  {k: 'clear watch', f: () => { 
+    watch = []; 
+    safeSet('poinin_watch', []); 
+    renderWatch(); 
+    refreshSaveButtons(); 
+    updateStats();
+  }},
+  {k: 'export profile', f: () => exportProfile()},
+  {k: 'import profile', f: () => importProfile()},
+  {k: 'reset profile', f: () => resetProfile()},
+  {k: 'sign out', f: () => signOut()},
+];
+
+function openCmd() {
+  cmd.classList.add('open');
+  cmd.setAttribute('aria-hidden', 'false');
+  cmdInput.focus();
+  renderCmdList('');
+}
+
+function closeCmd() {
+  cmd.classList.remove('open');
+  cmd.setAttribute('aria-hidden', 'true');
+  cmdInput.value = '';
+}
+
+function renderCmdList(q) {
+  cmdList.innerHTML = '';
+  const filtered = commands.filter(c => c.k.includes(q.toLowerCase()));
+  
+  if (filtered.length === 0) {
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.innerHTML = '<div class="icon"><i class="fas fa-search"></i></div><div>No commands found</div>';
+    cmdList.appendChild(item);
+    return;
+  }
+  
+  filtered.forEach(c => {
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.innerHTML = `<div class="icon"><i class="fas fa-terminal"></i></div><div>${c.k}</div>`;
+    item.addEventListener('click', () => {
+      c.f();
+      closeCmd();
+    });
+    cmdList.appendChild(item);
+  });
+}
+
+cmdInput.addEventListener('input', e => renderCmdList(e.target.value));
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  const macCmd = (e.metaKey && !e.ctrlKey);
+  if ((e.ctrlKey || macCmd) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    if (cmd.classList.contains('open')) {
+      closeCmd();
+    } else {
+      openCmd();
+    }
+  }
+  
+  if (e.key === 'Escape') {
+    closeCmd();
+    closeSettings();
+    closePlayer();
+    hideAuthModal();
+  }
+});
+
+// ======= Enhanced Settings Panel =======
+const settingsEl = $('#settingsPanel');
+
+function toggleSettings(open) {
+  if (open) {
+    settingsEl.classList.add('open');
+    settingsEl.setAttribute('aria-hidden', 'false');
+  } else {
+    settingsEl.classList.remove('open');
+    settingsEl.setAttribute('aria-hidden', 'true');
+  }
+}
+
+$('#openSettingsBtn').addEventListener('click', () => 
+  toggleSettings(!settingsEl.classList.contains('open'))
+);
+
+// Settings event listeners
+$('#accentPicker').addEventListener('input', e => {
+  state.accent = e.target.value;
+  updateCSS();
+  saveState();
+});
+
+$('#themeSelect').addEventListener('change', e => {
+  state.theme = e.target.value;
+  updateCSS();
+  saveState();
+});
+
+$('#fontSelect').addEventListener('change', e => {
+  state.font = e.target.value;
+  updateCSS();
+  saveState();
+});
+
+$('#scaleRange').addEventListener('input', e => {
+  state.scale = e.target.value;
+  updateCSS();
+  saveState();
+});
+
+$('#blurRange').addEventListener('input', e => {
+  state.blur = e.target.value;
+  updateCSS();
+  saveState();
+});
+
+$('#densityRange').addEventListener('input', e => {
+  state.density = e.target.value;
+  updateCSS();
+  saveState();
+});
+
+$('#avatarUrl').addEventListener('input', e => {
+  state.avatar = e.target.value;
+  updateCSS();
+  saveState();
+});
+
+$('#bioInput').addEventListener('input', e => {
+  state.bio = e.target.value;
+  updateCSS();
+  saveState();
+});
+
+$('#usernameInput').addEventListener('input', e => {
+  state.username = e.target.value;
+  updateCSS();
+  saveState();
+  updateLogo();
+});
+
+// Profile actions
+function exportProfile() {
+  const data = JSON.stringify(state, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'poinin-profile.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importProfile() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'application/json';
+  input.onchange = (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    
+    const r = new FileReader();
+    r.onload = ev => {
+      try {
+        const obj = JSON.parse(ev.target.result);
+        state = Object.assign(state, obj);
+        saveState();
+        updateCSS();
+        renderGallery();
+        renderWatch();
+        updateBadges();
+        updateStats();
+      } catch(err) {
+        alert('Invalid profile file');
+      }
+    };
+    r.readAsText(f);
+  };
+  input.click();
+}
+
+function resetProfile() {
+  if (confirm('Are you sure you want to reset all settings to default?')) {
+    state = {
+      theme: 'dark',
+      accent: '#7c5cff',
+      font: 'inter',
+      scale: 1,
+      blur: 12,
+      density: 1,
+      avatar: 'https://i.imgur.com/8Km9tLL.png',
+      bio: 'Cyber Artist • Motion & FX',
+      username: 'Poinin',
+      badges: [],
+      activity: 0,
+      viewedVideos: [],
+      likes: []
+    };
+    saveState();
+    updateCSS();
+    renderGallery();
+    renderWatch();
+    updateBadges();
+    updateStats();
+    updateLogo();
+  }
+}
+
+$('#exportProfile').addEventListener('click', exportProfile);
+$('#importProfile').addEventListener('click', importProfile);
+$('#resetProfile').addEventListener('click', resetProfile);
+
+// ======= Enhanced Interactions =======
+// Gallery interactions
+$('#gallery').addEventListener('click', e => {
+  const save = e.target.closest('.save');
+  if (save) {
+    toggleWatch(Number(save.dataset.id));
+    return;
+  }
+  
+  const like = e.target.closest('.like');
+  if (like) {
+    toggleLike(Number(like.dataset.id));
+    return;
+  }
+  
+  const play = e.target.closest('.play');
+  if (play) {
+    const v = videos.find(x => x.id === Number(play.dataset.id));
+    openPlayer(v);
+    return;
+  }
+  
+  const thumb = e.target.closest('.thumb');
+  if (thumb) {
+    const id = Number(thumb.dataset.id);
+    const v = videos.find(x => x.id === id);
+    openPlayer(v);
+  }
+});
+
+// Watch list interactions
+$('#watchList').addEventListener('click', e => {
+  const play = e.target.closest('.play-watch');
+  if (play) {
+    const v = watch.find(x => x.id === Number(play.dataset.id));
+    if (v) openPlayer(v);
+  }
+  
+  const rm = e.target.closest('.remove-watch');
+  if (rm) {
+    toggleWatch(Number(rm.dataset.id));
+  }
+});
+
+$('#clearWatch').addEventListener('click', () => {
+  if (watch.length === 0) return;
+  
+  if (confirm(`Clear all ${watch.length} items from your watch list?`)) {
+    watch = [];
+    safeSet('poinin_watch', []);
+    renderWatch();
+    refreshSaveButtons();
+    updateStats();
+  }
+});
+
+$('#refreshGallery').addEventListener('click', () => {
+  const btn = $('#refreshGallery');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+  
+  // Simulate loading new content
+  setTimeout(() => {
+    renderGallery();
+    btn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+    
+    // Show notification
+    showNotification('Gallery refreshed', 'success');
+  }, 800);
+});
+
+$('#playerClose').addEventListener('click', closePlayer);
+
+// ======= Enhanced Badges System =======
+function updateBadges() {
+  const badges = [];
+  const savedCount = watch.length;
+  const viewedCount = state.viewedVideos.length;
+  const likedCount = state.likes.length;
+  
+  // Activity badges
+  if (savedCount >= 1) badges.push('Watcher');
+  if (savedCount >= 5) badges.push('Collector');
+  if (viewedCount >= 3) badges.push('Viewer');
+  if (viewedCount >= 10) badges.push('Binge Watcher');
+  if (likedCount >= 5) badges.push('Fan');
+  
+  // Customization badges
+  if (state.scale !== 1 || state.blur !== 12 || state.accent !== '#7c5cff' || state.font !== 'inter') {
+    badges.push('Customizer');
+  }
+  
+  // Special badges
+  if (savedCount >= 10 && viewedCount >= 15 && likedCount >= 10) {
+    badges.push('Power User');
+  }
+  
+  state.badges = badges;
+  
+  // Update badge display
+  const badgeEl = $('#dynamicBadge');
+  if (badges.length > 0) {
+    badgeEl.textContent = badges[0];
+    badgeEl.title = badges.join(', ');
+  } else {
+    badgeEl.textContent = 'New User';
+  }
+}
+
+function toggleBadges() {
+  // This could cycle through badges or show a badge gallery in a future enhancement
+  const badges = state.badges;
+  if (badges.length > 1) {
+    const currentIndex = badges.indexOf($('#dynamicBadge').textContent);
+    const nextIndex = (currentIndex + 1) % badges.length;
+    $('#dynamicBadge').textContent = badges[nextIndex];
+  }
+}
+
+// ======= Enhanced Stats =======
+function updateStats() {
+  const savedCount = watch.length;
+  const viewedCount = state.viewedVideos.length;
+  
+  // Animate counter values
+  const savedEl = $('#savedCount');
+  const viewedEl = $('#viewedCount');
+  
+  const currentSaved = parseInt(savedEl.textContent) || 0;
+  const currentViewed = parseInt(viewedEl.textContent) || 0;
+  
+  if (currentSaved !== savedCount) {
+    animateValue(savedEl, currentSaved, savedCount, 800);
+  }
+  
+  if (currentViewed !== viewedCount) {
+    animateValue(viewedEl, currentViewed, viewedCount, 800);
+  }
+}
+
+// ======= Enhanced Ambient Effects =======
+let idleTimer = null;
+
+function setIdle() {
+  document.documentElement.style.setProperty('--blur-amount', (state.blur * 0.5) + 'px');
+}
+
+function setActive() {
+  document.documentElement.style.setProperty('--blur-amount', (state.blur) + 'px');
+}
+
+['mousemove', 'scroll', 'keydown', 'touchstart'].forEach(e => 
+  document.addEventListener(e, () => {
+    clearTimeout(idleTimer);
+    setActive();
+    idleTimer = setTimeout(setIdle, 5000);
+  })
+);
+
+// ======= Enhanced Logo Animation =======
+function typeLogo(text) {
+  const el = document.getElementById('dynamicLogo');
+  const currentText = el.textContent;
+  
+  if (currentText === text) return;
+  
+  el.textContent = '';
+  let i = 0;
+  
+  const interval = setInterval(() => {
+    el.textContent += text[i];
+    i++;
+    
+    if (i >= text.length) {
+      clearInterval(interval);
+    }
+  }, 70);
+}
+
+function updateLogo() {
+  const user = state.username || 'Poinin';
+  typeLogo(user);
+}
+
+// ======= Enhanced Notification System =======
+function showNotification(message, type = 'info') {
+  // Remove existing notification
+  const existing = $('.notification');
+  if (existing) existing.remove();
+  
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-left: 4px solid ${type === 'success' ? '#2dd4bf' : type === 'error' ? '#f87171' : state.accent};
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 300px;
+  `;
+  
+  notification.innerHTML = `
+    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" 
+       style="color: ${type === 'success' ? '#2dd4bf' : type === 'error' ? '#f87171' : state.accent}"></i>
+    <span>${message}</span>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Animate in
+  setTimeout(() => {
+    notification.style.transform = 'translateX(0)';
+  }, 10);
+  
+  // Auto remove after 3 seconds
+  setTimeout(() => {
+    notification.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 300);
+  }, 3000);
+}
+
+// ======= User Menu =======
+const userMenu = $('#userMenu');
+
+function toggleUserMenu() {
+  userMenu.classList.toggle('open');
+}
+
+function closeUserMenu() {
+  userMenu.classList.remove('open');
+}
+
+// User menu event listeners
+$('#openProfileBtn').addEventListener('click', toggleUserMenu);
+
+$('#profileMenuItem').addEventListener('click', () => {
+  closeUserMenu();
+  // Could open a detailed profile view in the future
+  showNotification('Profile details would open here', 'info');
+});
+
+$('#settingsMenuItem').addEventListener('click', () => {
+  closeUserMenu();
+  toggleSettings(true);
+});
+
+$('#signOutMenuItem').addEventListener('click', () => {
+  closeUserMenu();
+  signOut();
+});
+
+// Close user menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!userMenu.contains(e.target)) {
+    closeUserMenu();
+  }
+});
+
+// ======= Username Availability Check =======
+$('#signupUsername').addEventListener('input', function() {
+  const username = this.value.trim();
+  const checkEl = $('#usernameCheck');
+  
+  if (username.length < 3) {
+    checkEl.style.display = 'none';
+    return;
+  }
+  
+  const available = checkUsernameAvailability(username);
+  checkEl.style.display = 'flex';
+  checkEl.className = `username-check ${available ? 'available' : 'taken'}`;
+  checkEl.innerHTML = available ? 
+    '<i class="fas fa-check"></i><span>Username available</span>' :
+    '<i class="fas fa-times"></i><span>Username taken</span>';
+});
+
+// ======= Auth Form Event Listeners =======
+$('#switchToSignup').addEventListener('click', switchToSignup);
+$('#switchToSignin').addEventListener('click', switchToSignin);
+
+$('#signinSubmit').addEventListener('click', () => {
+  const username = $('#signinUsername').value.trim();
+  const password = $('#signinPassword').value;
+  
+  if (!username || !password) {
+    showNotification('Please fill in all fields', 'error');
+    return;
+  }
+  
+  signIn(username, password);
+});
+
+$('#signupSubmit').addEventListener('click', signUp);
+
+// Allow submitting forms with Enter key
+$('#signinPassword').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    $('#signinSubmit').click();
+  }
+});
+
+$('#signupConfirmPassword').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    $('#signupSubmit').click();
+  }
+});
+
+// Anonymous browsing buttons
+$('#signInBtn').addEventListener('click', () => {
+  showAuthModal();
+  switchToSignin();
+});
+
+$('#signUpBtn').addEventListener('click', () => {
+  showAuthModal();
+  switchToSignup();
+});
+
+// ======= Initialize Everything =======
+function init() {
+  updateCSS();
+  renderGallery();
+  renderWatch();
+  updateBadges();
+  updateStats();
+  updateLogo();
+  
+  // Add floating particles to auth modal
+  const modal = $('#authModal');
+  if (modal) {
+    for (let i = 0; i < 15; i++) {
+      const b = document.createElement('div');
+      b.className = 'signin-float';
+      b.style.left = Math.random() * 100 + '%';
+      b.style.animationDelay = (Math.random() * 5) + 's';
+      b.style.width = (Math.random() * 12 + 8) + 'px';
+      b.style.height = b.style.width;
+      modal.appendChild(b);
+    }
+  }
+  
+  // Auto apply theme=auto if chosen
+  if (state.theme === 'auto') {
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    
+    function mqfn() {
+      if (mq.matches) {
+        state.theme = 'light';
+      } else {
+        state.theme = 'dark';
+      }
+      updateCSS();
+    }
+    
+    mq.addEventListener('change', mqfn);
+    mqfn();
+  }
+  
+  // Expose API for external use
+  window.Poinin = {
+    state,
+    saveState,
+    toggleWatch,
+    openPlayer,
+    showNotification,
+    updateStats,
+    signIn,
+    signUp,
+    signOut
+  };
+  
+  console.log('Poinin Premium initialized successfully!');
+}
+
+// Run initialization when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+</body>
+</html>
